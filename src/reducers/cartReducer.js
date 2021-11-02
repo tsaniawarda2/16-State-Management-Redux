@@ -76,7 +76,7 @@ const cartReducer = (state = initState, action) => {
     const addedItems = state.addedItems.filter((item) => item.id !== id);
 
     const setItem = produce(state, (draf) => {
-      if (draf.addedItems.find((item) => item.id == id)) {
+      if (draf.addedItems.find((item) => item.id === id)) {
         const found = draf.items.find((item) => item.id === id);
         found.quantity = 0;
       }
@@ -86,7 +86,7 @@ const cartReducer = (state = initState, action) => {
     addedItems.map(
       (item) => (total += parseInt(item.price) * parseInt(item.quantity))
     );
-    if (total.length == 0) {
+    if (total.length === 0) {
       return (total = 0);
     }
 
@@ -100,7 +100,7 @@ const cartReducer = (state = initState, action) => {
   if (action.type === ADD_TO_CART) {
     const addToCart = produce(state, (draf) => {
       const id = action.payload;
-      if (draf.addedItems.find((item) => item.id == id)) {
+      if (draf.addedItems.find((item) => item.id === id)) {
         const found = draf.addedItems.find((item) => item.id === id);
         found.quantity++;
         draf.total += parseInt(found.price);
